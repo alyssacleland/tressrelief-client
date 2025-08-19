@@ -1,4 +1,15 @@
 body {
-  background: black;
-  color: white;
+  background: white;
+  color: black;
 }
+
+@import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
+
+.brand-cute {
+  font-family: 'Pacifico', cursive;
+  color: #f07aa5; 
+}
+
+.navbar-light .navbar-brand.brand-cute { color: #ff4d8d; }
+.navbar-light .navbar-brand.brand-cute:hover,
+.navbar-light .navbar-brand.brand-cute:focus { color: #facc15 !important; }
