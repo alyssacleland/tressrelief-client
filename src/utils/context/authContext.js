@@ -69,13 +69,13 @@ function AuthProvider(props) {
     // This subscribes to Firebase auth state. It fires whenever login status changes.
     const unsub = firebase.auth().onAuthStateChanged((fbUser) => {
       if (fbUser) {
-        // Supply defaults from Firebase to your Django API
+        // Supply defaults from Firebase to Django API
         getOrCreateUser({
           uid: fbUser.uid,
-          display_name: fbUser.displayName, // becomes display_name
-          googleEmail: fbUser.email, // becomes google_email
+          display_name: fbUser.displayName,
+          google_email: fbUser.email,
         }).then((serverUser) => {
-          setUser({ fbUser, ...serverUser }); // merge raw Firebase + your DB row
+          setUser({ fbUser, ...serverUser }); // merge raw Firebase + DB row
         });
       } else {
         setUser(false);
