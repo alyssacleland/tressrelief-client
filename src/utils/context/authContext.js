@@ -57,7 +57,7 @@
 
 import React, { createContext, useContext, useEffect, useMemo, useState } from 'react';
 import { firebase } from '@/utils/client';
-import { getOrCreateUser } from '@/utils/auth';
+import { getOrCreateUser } from '@/utils/authentication';
 
 const AuthContext = createContext();
 AuthContext.displayName = 'AuthContext';
