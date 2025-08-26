@@ -15,3 +15,7 @@ body {
 .navbar-light .navbar-brand.brand-cute { color: #ff4d8d; }
 .navbar-light .navbar-brand.brand-cute:hover,
 .navbar-light .navbar-brand.brand-cute:focus { color: #facc15 !important; }
+
+a {
+  @apply text-gray-900 no-underline;
+}
