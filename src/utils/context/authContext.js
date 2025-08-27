@@ -74,6 +74,7 @@ function AuthProvider(props) {
           uid: fbUser.uid,
           display_name: fbUser.displayName,
           google_email: fbUser.email,
+          photo_url: fbUser.photoURL,
         }).then((serverUser) => {
           setUser({ fbUser, ...serverUser }); // merge raw Firebase + DB row
         });
