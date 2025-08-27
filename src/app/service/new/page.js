@@ -1,5 +1,10 @@
 import React from 'react';
+import ServiceForm from '../../../components/forms/ServiceForm';
 
 export default function NewServicePage() {
-  return <div>here we will create a new service</div>;
+  return (
+    <div>
+      <ServiceForm />
+    </div>
+  );
 }
