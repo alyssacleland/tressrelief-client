@@ -28,7 +28,7 @@ const getStylists = () =>
 const getServiceStylistOptions = (serviceId) =>
   new Promise((resolve, reject) => {
     const queryString = serviceId ? `?serviceId=${serviceId}` : '';
-    fetch(`${clientCredentials.databaseURL}/userinfo${queryString}`)
+    fetch(`${clientCredentials.databaseURL}/service-stylist-options${queryString}`)
       .then((response) => response.json())
       .then(resolve)
       .catch(reject);

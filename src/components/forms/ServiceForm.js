@@ -1,15 +1,16 @@
 'use client';
 
-/* eslint-disable react/prop-types */
-/* eslint-disable no-unused-vars */
+/* eslint-disable jsx-a11y/no-static-element-interactions */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
 
 import React, { useEffect, useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import { useRouter } from 'next/navigation';
-import { InputGroup } from 'react-bootstrap';
+import { Dropdown, InputGroup } from 'react-bootstrap';
 import { getServiceStylistOptions } from '../../api/userData';
 import { getCategories } from '../../api/categoriesData';
+import { createService, updateService } from '../../api/servicesData';
 
 const initialState = {
   // id: '',
@@ -23,6 +24,7 @@ const initialState = {
   stylist_ids: [], // array for multi-select
 };
 
+// eslint-disable-next-line react/prop-types
 export default function ServiceForm({ serviceObj = initialState }) {
   const [currentService, setCurrentService] = useState(initialState);
   const [stylistOptions, setStylistOptions] = useState([]);
@@ -68,7 +70,6 @@ export default function ServiceForm({ serviceObj = initialState }) {
   }, [serviceObj?.id]);
 
   const handleChange = (event) => {
-    // console.log(event)
     const { name, value } = event.target;
 
     if (name === 'price' || name === 'duration') {
@@ -82,65 +83,111 @@ export default function ServiceForm({ serviceObj = initialState }) {
     }));
   };
 
-  // TODO:
-  const handleStylistToggle = (event) => {};
+  const handleStylistToggle = (event) => {
+    const id = Number(event.target.value);
+    const next = [...currentService.stylist_ids];
+    const index = next.indexOf(id);
+    if (index !== -1) {
+      next.splice(index, 1);
+    } else {
+      next.push(id);
+    }
+    setCurrentService((prev) => ({ ...prev, stylist_ids: next }));
+  };
 
-  // TODO:
-  const handleSubmit = (event) => {};
+  const handleSubmit = (event) => {
+    event.preventDefault();
+
+    const payload = {
+      id: currentService.id,
+      name: currentService.name,
+      description: currentService.description,
+      duration: Number(currentService.duration),
+      price: Number(currentService.price),
+      category: Number(currentService.category),
+      image_url: currentService.image_url,
+      active: Boolean(currentService.active),
+      stylist_ids: currentService.stylist_ids.map(Number),
+    };
+
+    if (serviceObj?.id) {
+      updateService(payload).then(() => router.push('/'));
+    } else {
+      createService(payload).then(() => router.push('/'));
+    }
+  };
 
   return (
-    <div>
-      <h1>Add New Service</h1>
-      <Form>
-        <Form.Group className="mb-3">
-          <Form.Label>Service Name</Form.Label>
-          <Form.Control required name="name" value={currentService.name} onChange={handleChange} placeholder="Enter Service Name" />
-          {/* <Form.Text className="text-muted">
-          Well never share your email with anyone else.
-        </Form.Text> */}
-        </Form.Group>
+    <div className="container py-4" style={{ maxWidth: 640, margin: '0 auto' }}>
+      <div>
+        <h1>{serviceObj?.id ? 'Edit ' : 'Add New '} Service</h1>
+        <Form onSubmit={handleSubmit}>
+          <Form.Group className="mb-3">
+            <Form.Label>Service Name</Form.Label>
+            <Form.Control required name="name" value={currentService.name} onChange={handleChange} placeholder="Enter Service Name" />
+            {/* <Form.Text className="text-muted">
+            Well never share your email with anyone else.
+          </Form.Text> */}
+          </Form.Group>
 
-        <Form.Group>
-          <Form.Label>Category</Form.Label>
-          <Form.Select type="category" required value={currentService.category} onChange={handleChange} placeholder="Select Category" name="category">
-            <option>Default select</option>
-          </Form.Select>
-        </Form.Group>
+          <Form.Group className="mb-3">
+            <Form.Label>Category</Form.Label>
+            <Form.Select name="category" required value={currentService.category} onChange={handleChange}>
+              <option value="">Select a category</option>
+              {categoryOptions.map((category) => (
+                <option key={category.id} value={category.id}>
+                  {category.name}
+                </option>
+              ))}
+            </Form.Select>
+          </Form.Group>
 
-        <Form.Group>
-          <Form.Label>Stylists</Form.Label>
-          <Form.Select required value="" onChange="" placeholder="Stylists (Check all that apply)" name="stylists">
-            <option>Default select</option>
-          </Form.Select>
-        </Form.Group>
+          <Form.Group className="mb-3">
+            <Form.Label>Stylists</Form.Label>
 
-        <Form.Group className="mb-3">
-          <Form.Label>Description</Form.Label>
-          <Form.Control required value={currentService.description} onChange={handleChange} name="description" placeholder="Enter Description" />
-        </Form.Group>
+            <Dropdown autoClose="outside">
+              <Dropdown.Toggle type="button" variant="secondary">
+                {currentService.stylist_ids.length ? `Selected (${currentService.stylist_ids.length})` : 'Select stylists'}
+              </Dropdown.Toggle>
 
-        <Form.Group className="mb-3">
-          <Form.Label>Duration (minutes)</Form.Label>
-          <Form.Control required value={currentService.duration} onChange={handleChange} type="number" placeholder="Enter Duration in Minutes" name="duration" step="1" min="1" />
-        </Form.Group>
+              <Dropdown.Menu style={{ maxHeight: 260, overflowY: 'auto' }}>
+                <div onClick={(e) => e.stopPropagation()}>
+                  {stylistOptions.map((stylist) => (
+                    <Form.Check key={stylist.id} type="checkbox" className="mb-2" label={stylist.display_name || stylist.google_email} value={stylist.id} checked={currentService.stylist_ids.includes(Number(stylist.id))} onChange={handleStylistToggle} />
+                  ))}
+                </div>
+              </Dropdown.Menu>
+            </Dropdown>
+          </Form.Group>
 
-        <Form.Group className="mb-3">
-          <Form.Label>Price</Form.Label>
-          <InputGroup>
-            <InputGroup.Text>$</InputGroup.Text>
-            <Form.Control required value={currentService.price} onChange={handleChange} type="number" placeholder="Enter Price" name="price" min="0" step="1" />
-          </InputGroup>
-        </Form.Group>
+          <Form.Group className="mb-3">
+            <Form.Label>Description</Form.Label>
+            <Form.Control required value={currentService.description} onChange={handleChange} name="description" placeholder="Enter Description" />
+          </Form.Group>
 
-        <Form.Group className="mb-3">
-          <Form.Label>Image URL</Form.Label>
-          <Form.Control required value={currentService.image_url} onChange={handleChange} placeholder="Enter Image URL" name="image_url" />
-        </Form.Group>
+          <Form.Group className="mb-3">
+            <Form.Label>Duration (minutes)</Form.Label>
+            <Form.Control required value={currentService.duration} onChange={handleChange} type="number" placeholder="Enter Duration in Minutes" name="duration" step="1" min="1" />
+          </Form.Group>
 
-        <Button variant="primary" type="submit">
-          Submit
-        </Button>
-      </Form>
+          <Form.Group className="mb-3">
+            <Form.Label>Price</Form.Label>
+            <InputGroup>
+              <InputGroup.Text>$</InputGroup.Text>
+              <Form.Control required value={currentService.price} onChange={handleChange} type="number" placeholder="Enter Price" name="price" min="0" step="1" />
+            </InputGroup>
+          </Form.Group>
+
+          <Form.Group className="mb-3">
+            <Form.Label>Image URL</Form.Label>
+            <Form.Control required value={currentService.image_url} onChange={handleChange} placeholder="Enter Image URL" name="image_url" />
+          </Form.Group>
+
+          <Button variant="primary" type="submit">
+            Submit
+          </Button>
+        </Form>
+      </div>
     </div>
   );
 }

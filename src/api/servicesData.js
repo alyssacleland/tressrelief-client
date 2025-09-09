@@ -54,14 +54,14 @@ const createService = (service) =>
       .catch(reject);
   });
 
-const updateService = (id, service) =>
+const updateService = (payload) =>
   new Promise((resolve, reject) => {
-    fetch(`${clientCredentials.databaseURL}/services/${id}`, {
+    fetch(`${clientCredentials.databaseURL}/services/${payload.id}`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify(service),
+      body: JSON.stringify(payload),
     })
       .then((response) => response.json())
       .then(resolve)
