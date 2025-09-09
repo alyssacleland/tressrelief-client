@@ -8,6 +8,7 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import { useRouter } from 'next/navigation';
 import { Dropdown, InputGroup } from 'react-bootstrap';
+import PropTypes from 'prop-types';
 import { getServiceStylistOptions } from '../../api/userData';
 import { getCategories } from '../../api/categoriesData';
 import { createService, updateService } from '../../api/servicesData';
@@ -24,7 +25,6 @@ const initialState = {
   stylist_ids: [], // array for multi-select
 };
 
-// eslint-disable-next-line react/prop-types
 export default function ServiceForm({ serviceObj = initialState }) {
   const [currentService, setCurrentService] = useState(initialState);
   const [stylistOptions, setStylistOptions] = useState([]);
@@ -196,3 +196,17 @@ export default function ServiceForm({ serviceObj = initialState }) {
     </div>
   );
 }
+
+ServiceForm.propTypes = {
+  serviceObj: PropTypes.shape({
+    id: PropTypes.number,
+    name: PropTypes.string,
+    description: PropTypes.string,
+    duration: PropTypes.number,
+    price: PropTypes.number,
+    category: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+    image_url: PropTypes.string,
+    active: PropTypes.bool,
+    stylist_ids: PropTypes.arrayOf(PropTypes.number),
+  }),
+};
