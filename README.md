@@ -1,32 +1,117 @@
-# This is the name of my Project  [![Netlify Status]()]()
-<!-- update the netlify badge above with your own badge that you can find at netlify under settings/general#status-badges -->
+# Tress Relief
 
-Here I am putting an overview of what my project is about. It comes below the name of my project so that others can read what it is about and get more details.
+Tress Relief is a comprehensive hair salon management application that allows clients to browse hair services by category, view detailed service information, and explore stylists' portfolios. The app provides an intuitive interface for service discovery and includes administrative features for salon managemen, including creating, editing, and deleting new servcices and managing which stylists offer them. 
 
-[View App](#your-link)
+## Overview
 
-## Get Started <!-- OPTIONAL, but doesn't hurt -->
-PLACE CODE SNIPPET HERE
+This Next.js application serves as the client-side interface for Tress Relief, a hair salon service management platform. It integrates with a Django REST API backend to provide a seamless experience for browsing hair services, viewing stylist information, and managing salon operations.
 
-## About the User <!-- This is a scaled down user persona -->
+## Getting Started & Installation
+
+### Prerequisites
+- Node.js (v18 or higher)
+- npm or yarn package manager
+- Firebase account for authentication
+- [Tress Relief Django backend](https://github.com/alyssacleland/tressrelief-server) running
+
+### Setup Instructions
+
+1. **Clone the repository**:
+   ```bash
+   git clone https://github.com/alyssacleland/tressrelief-client.git
+   cd tressrelief-client
+   ```
+
+2. **Install dependencies**:
+   ```bash
+   npm install
+   ```
+
+3. **Set up environment variables**:
+   Create a `.env.local` file in the root directory with:
+   ```
+   NEXT_PUBLIC_FIREBASE_API_KEY=your_api_key
+   NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN=your_domain
+   NEXT_PUBLIC_DATABASE_URL=your_backend_api_url
+   ```
+
+4. **Start the development server**:
+   ```bash
+   npm run dev
+   ```
+
+5. **View the application**:
+   Open [http://localhost:3000](http://localhost:3000) with your browser to see the application.
+
+## About the User
+
+**Primary User**: Hair salon clients and administrators
+
+**Client Persona**: 
+- Individuals seeking professional hair services
+- Values visual browsing experience to see service examples
+- Wants to understand service details, duration, and pricing before booking
+- Interested in viewing stylist portfolios and expertise
+
+**Admin Persona**:
+- Salon owners and managers
+- Needs to create, edit, and manage service offerings
+- Wants to organize services by categories
+- Requires tools to maintain accurate pricing and service information
+
+## Features
+
+- Browse hair services organized by categories (Braids, Feed-ins, Party styles, Tinsel, etc.)
+- View detailed service information including descriptions, duration, and pricing
+- Explore stylist profiles and their service specialties
+- Firebase authentication for secure user management
+- Administrative features for service and category management
+- Create, edit, and delete services with form validation
+- Multi-stylist assignment for services
+- Real-time data updates from Django REST API backend
+
+## Technology Stack
+
+- **Frontend**: Next.js, React
+- **Styling**: Tailwind CSS, React Bootstrap
+- **Authentication**: Firebase Auth
+- **Backend Integration**: RESTful API calls to Django backend
+
+## Video Walkthrough of Tress Relief
+
+[Video walkthrough to be added]
+
+## Relevant Links
+
+- [Backend Repository](https://github.com/alyssacleland/tressrelief-server)
+- [ERD](https://dbdiagram.io/d/Tress-Relief-ERD-67b7b430263d6cf9a0ecdae3)
+- [Project Proposal](https://docs.google.com/document/d/1Zs2dOnf_ZF1LuLe6OJZwOTR3j5Wer_WHPFdAxDB8WDs/edit?usp=sharing)
 
 
-## Features <!-- List your app features using bullets! Do NOT use a paragraph. No one will read that! -->
+## Project Screenshots
 
+### Categories Page
+<img width="1148" alt="Categories Page showing service categories with images" src="./public/images/categoriespage.png">
 
-## Video Walkthrough of APP NAME <!-- A loom link is sufficient -->
+### Category Details/Services Page
+<img width="1148" alt="Category details page displaying services within a category" src="./public/images/categorydetailspageorservices.png">
 
+### Service Details Page
+<img width="1148" alt="Service details page with pricing and description" src="./public/images/servicedetailspage.png">
 
-## Relevant Links <!-- Link to all the things that are required outside of the ones that have their own section -->
-- [Check out the deployed site](#your-link)
-- [Wireframes](#your-link)
-- [Project Board](#your-link)
+### Stylists Page
+<img width="1148" alt="Stylists page showing available hair stylists" src="./public/images/stylistspage.png">
 
-## Code Snippet <!-- OPTIONAL, but doesn't hurt -->
-PLACE CODE SNIPPET HERE
+### Create/Edit Service Form
+<img width="1148" alt="Admin form for creating and editing services" src="./public/images/createeditserviceform.png">
 
-## Project Screenshots <!-- These can be inside of your project. Look at the repos from class and see how the images are included in the readme -->
-<img width="1148" alt="Your Alt" src="your-link.png">
+## Development
+
+- `npm run dev` - Start development server
+- `npm run build` - Build for production
+- `npm run start` - Start production server
+- `npm run lint` - Run ESLint for code quality
 
 ## Contributors
+
 - [Alyssa Cleland](https://github.com/alyssacleland)
