@@ -84,12 +84,17 @@ export default function ServiceForm({ serviceObj = initialState }) {
   };
 
   const handleStylistToggle = (event) => {
+    // get the id of the stylist being toggled. (in the form, where we render stylists dropdown and we have onChange equal to this fuction (handleStylistToggle), value={stylist.id}, so that is why event.target.value is the id)
     const id = Number(event.target.value);
+    // copy the current stylist_ids array to variable 'next. in the case of create, it will be empty initially, in the case of edit, it will be pre-populated with the stylists that offer this service
     const next = [...currentService.stylist_ids];
+    // indexOf returns -1 if the id is not found in the array, otherwise it returns the index (0, 1, 2, etc.). so here we check if the id is already in the array
     const index = next.indexOf(id);
+    // if the index is NOT -1, that means the id for the event was found in the array (it was previously checked or the stylist was previously set to offer that service), so we want to remove it (uncheck).
     if (index !== -1) {
-      next.splice(index, 1);
+      next.splice(index, 1); // remove 1 item at position index
     } else {
+      // if the index IS -1, that means the id for the event was not found in the array, so we want to add it (check)
       next.push(id);
     }
     setCurrentService((prev) => ({ ...prev, stylist_ids: next }));
