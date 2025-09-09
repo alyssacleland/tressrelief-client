@@ -24,4 +24,14 @@ const getStylists = () =>
       .catch(reject);
   });
 
-export { getAllUserInfos, getSingleUserInfo, getStylists };
+// gets all the stylists, uincludes the joined property which will be true if stylist offers that service (if join table row exists of the stylist for the service), and false otherwise
+const getServiceStylistOptions = (serviceId) =>
+  new Promise((resolve, reject) => {
+    const queryString = serviceId ? `?serviceId=${serviceId}` : '';
+    fetch(`${clientCredentials.databaseURL}/service-stylist-options${queryString}`)
+      .then((response) => response.json())
+      .then(resolve)
+      .catch(reject);
+  });
+
+export { getAllUserInfos, getSingleUserInfo, getStylists, getServiceStylistOptions };
