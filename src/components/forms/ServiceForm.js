@@ -12,9 +12,9 @@ import PropTypes from 'prop-types';
 import { getServiceStylistOptions } from '../../api/userData';
 import { getCategories } from '../../api/categoriesData';
 import { createService, updateService } from '../../api/servicesData';
+import { useAuth } from '../../utils/context/authContext';
 
 const initialState = {
-  // id: '',
   name: '',
   description: '',
   duration: '',
@@ -30,6 +30,7 @@ export default function ServiceForm({ serviceObj = initialState }) {
   const [stylistOptions, setStylistOptions] = useState([]);
   const [categoryOptions, setCategoryOptions] = useState([]);
   const router = useRouter();
+  const { user } = useAuth();
 
   useEffect(() => {
     getCategories().then(setCategoryOptions);
@@ -48,6 +49,7 @@ export default function ServiceForm({ serviceObj = initialState }) {
         category: serviceObj.category,
         image_url: serviceObj.image_url,
         active: serviceObj.active,
+        // owner_uid: serviceObj.owner_uid, don't need this bc it's not being updated
         stylist_ids: [],
       }));
 
@@ -118,6 +120,7 @@ export default function ServiceForm({ serviceObj = initialState }) {
     if (serviceObj?.id) {
       updateService(payload).then(() => router.push('/'));
     } else {
+      payload.owner_uid = user.uid;
       createService(payload).then(() => router.push('/'));
     }
   };
