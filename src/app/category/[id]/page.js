@@ -65,7 +65,8 @@ export default function CategoryDetailsPage({ params }) {
 
                   <p className="mt-1 text-sm text-gray-500">{service.description}</p>
 
-                  {isAdmin(user) && (
+                  {/* {isAdmin(user) && ( */}
+                  {service.owner_uid === user?.uid && (
                     <div className="relative z-20 mt-2 flex items-center gap-3">
                       {/* EDIT */}
                       <OverlayTrigger placement="bottom" overlay={<Tooltip id={`tooltip-edit-${service.id}`}>Edit Service</Tooltip>}>
