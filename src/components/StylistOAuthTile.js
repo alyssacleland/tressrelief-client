@@ -33,6 +33,9 @@ export default function StylistOAuthTile() {
     <div>
       <Card className="mb-3 p-3">
         <h5>Hi, {user?.display_name}! Your Stylist Google Calendar:</h5>
+        <p className="text-muted" style={{ fontSize: '0.9rem' }}>
+          Connect your Google Calendar so clients can only book when you’re free. We’ll read your busy times and add appointments to your calendar automatically.
+        </p>
 
         {loading ? (
           <Spinner animation="border" size="sm" role="status">
