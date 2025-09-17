@@ -6,10 +6,10 @@ import Link from 'next/link';
 import { useAuth } from '../../utils/context/authContext';
 import { getStylists } from '../../api/userData';
 import { getServicesByStylist } from '../../api/servicesData';
+import StylistOAuthTile from '../../components/StylistOAuthTile';
 
 export default function PublicStylistsPage() {
   const { user } = useAuth();
-  console.log('user: ', user);
 
   const [stylists, setStylists] = useState([]);
   const [servicesByStylist, setServicesByStylist] = useState({});
@@ -17,7 +17,6 @@ export default function PublicStylistsPage() {
   useEffect(() => {
     getStylists().then(setStylists);
   }, []);
-  console.log('stylists: ', stylists);
 
   useEffect(() => {
     getStylists().then((list) => {
@@ -34,6 +33,9 @@ export default function PublicStylistsPage() {
     <div className="bg-white">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-8">
         <h1 className="text-3xl font-bold text-gray-900 mb-8">Our Stylists</h1>
+
+        {/* Show tile only if logged-in user is a stylist */}
+        {user?.role === 'stylist' && <StylistOAuthTile />}
 
         {stylists.map((stylist) => {
           const services = servicesByStylist[stylist.id];
