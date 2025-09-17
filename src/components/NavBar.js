@@ -1,7 +1,7 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React, { useState } from 'react';
 import Link from 'next/link';
-import { Navbar, Container, Nav, Button, Toast, ToastContainer } from 'react-bootstrap';
+import { Navbar, Container, Nav, Button, Toast, ToastContainer, Badge } from 'react-bootstrap';
 import { signOut, signIn } from '../utils/authentication';
 import { useAuth } from '../utils/context/authContext';
 
@@ -34,6 +34,19 @@ export default function NavBar() {
                 Meet the Stylists
               </Link>
             </Nav>
+
+            {/* role badge for admin and stylists */}
+            {user?.role === 'admin' && (
+              <Badge bg="info" pill className="me-2">
+                Admin
+              </Badge>
+            )}
+            {user?.role === 'stylist' && (
+              <Badge bg="info" pill className="me-2">
+                Stylist
+              </Badge>
+            )}
+
             {user ? (
               <Button variant="danger" onClick={handleSignOut}>
                 Sign Out
