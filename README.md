@@ -1,6 +1,6 @@
 # Tress Relief
 
-Tress Relief is a comprehensive hair salon management application that allows clients to browse hair services by category, view detailed service information, and explore stylists' portfolios. The app provides an intuitive interface for service discovery and includes administrative features for salon managemen, including creating, editing, and deleting new servcices and managing which stylists offer them. 
+Tress Relief is a comprehensive hair salon management application that allows clients to browse hair services by category, view detailed service information, and explore stylists' portfolios. The app provides an intuitive interface for service discovery and includes administrative features for salon management including creating, editing, and deleting new servcices and managing which stylists offer them. 
 
 ## Overview
 
@@ -79,7 +79,7 @@ This Next.js application serves as the client-side interface for Tress Relief, a
 
 ## Video Walkthrough of Tress Relief
 
-[Video walkthrough to be added]
+Coming soon!
 
 ## Relevant Links
 
@@ -104,13 +104,6 @@ This Next.js application serves as the client-side interface for Tress Relief, a
 
 ### Create/Edit Service Form
 <img width="1148" alt="Admin form for creating and editing services" src="./public/images/createeditserviceform.png">
-
-## Development
-
-- `npm run dev` - Start development server
-- `npm run build` - Build for production
-- `npm run start` - Start production server
-- `npm run lint` - Run ESLint for code quality
 
 ## Contributors
 
