@@ -23,6 +23,8 @@ export default function StylistOAuthTile() {
       // successful oauth inititation returns { url: 'https://accounts.google.com/....' } (consent screen)
       if (data.url) {
         window.location.href = data.url; // redirect stylist to Google consent
+        // and then back to our backend /oauth/google/callback to finish the process
+        // which will then redirect back to the front-end /stylists page
       }
     });
   };
