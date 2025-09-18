@@ -99,7 +99,7 @@ Coming soon!
 <img width="1148" alt="Service details page with real-time availabilityslots" src="./public/images/servicedetailspage-new.png">
 
 ### Stylists Page
-<img width="1148" alt="Stylists page showing available hair stylists and their specialties" src="./public/images/stylistspage.png?v=2">
+<img width="1148" alt="Stylists page showing available hair stylists and their specialties" src="./public/images/stylistspage-new">
 
 ### Create/Edit Service Form
 <img width="1148" alt="Admin form for creating and editing services with stylist assignment" src="./public/images/createeditserviceform.png">
