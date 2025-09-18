@@ -96,7 +96,7 @@ Coming soon!
 <img width="1148" alt="Category details page displaying services within a category" src="./public/images/categorydetailspageorservices.png">
 
 ### Service Details with Availability
-<img width="1148" alt="Service details page with real-time availabilityslots" src="./public/images/servicedetailspage-new.png">
+<img width="1148" alt="Service details page with real-time availability slots" src="./public/images/servicedetailspage-new.png">
 
 ### Stylists Page
 <img width="1148" alt="Stylists page showing available hair stylists and their specialties" src="./public/images/stylistspage-new">
