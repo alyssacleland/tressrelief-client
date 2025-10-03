@@ -78,7 +78,7 @@ The following features are in development:
 
 ## Video Walkthrough of Tress Relief
 
-- [YouTube Video] (https://www.youtube.com/watch?v=S2swTTe-KzA)
+- [YouTube Video](https://www.youtube.com/watch?v=S2swTTe-KzA)
 
 ## Relevant Links
 
