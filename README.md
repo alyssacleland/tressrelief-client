@@ -74,11 +74,11 @@ The following features are in development:
 - **Google Calendar Integration**: Automatically add confirmed appointments to stylist calendars
 - **Client Calendar Options**: Let clients add appointments to their own Google Calendar or download ICS files
 - **Email Notifications**: Send confirmation emails when appointments are booked
-- **User Role Management**: Admin tools to promote users between client, stylist, and admin roles
+- **User Role Management**: Admin tools to promote users between client, stylist, and admin rolesx
 
 ## Video Walkthrough of Tress Relief
 
-Coming soon!
+- [YouTube Video] (https://www.youtube.com/watch?v=S2swTTe-KzA)
 
 ## Relevant Links
 
